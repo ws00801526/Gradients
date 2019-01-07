@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,11 +20,52 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2w-Nw-ps5">
+                                <rect key="frame" x="15" y="572" width="345" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Edy-dA-R0J"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opN-lB-dPe" customClass="GradientLabel" customModule="Gradient">
+                                <rect key="frame" x="15" y="120" width="345" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="eIp-Va-Jj0"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvs-xa-Oua">
+                                <rect key="frame" x="15" y="507" width="345" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="KIa-EW-Mc7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="opN-lB-dPe" secondAttribute="trailing" constant="15" id="9CT-Jb-Ua8"/>
+                            <constraint firstItem="opN-lB-dPe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="15" id="9F0-n8-2RM"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="g2w-Nw-ps5" secondAttribute="bottom" constant="15" id="T81-oG-sqF"/>
+                            <constraint firstAttribute="trailing" secondItem="g2w-Nw-ps5" secondAttribute="trailing" constant="15" id="a2w-mJ-FVr"/>
+                            <constraint firstItem="g2w-Nw-ps5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="15" id="dZX-dZ-scO"/>
+                            <constraint firstAttribute="trailing" secondItem="cvs-xa-Oua" secondAttribute="trailing" constant="15" id="dtN-Lk-mIp"/>
+                            <constraint firstItem="opN-lB-dPe" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="100" id="gLh-3u-2lb"/>
+                            <constraint firstItem="g2w-Nw-ps5" firstAttribute="top" secondItem="cvs-xa-Oua" secondAttribute="bottom" constant="15" id="kkF-jl-kEw"/>
+                            <constraint firstItem="cvs-xa-Oua" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="15" id="tvX-UO-Lkg"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="gradientLabel" destination="opN-lB-dPe" id="r8G-zk-odx"/>
+                        <outlet property="progressView" destination="cvs-xa-Oua" id="WXp-GD-wNN"/>
+                        <outlet property="testView2" destination="g2w-Nw-ps5" id="KTv-IX-U1Y"/>
+                        <outlet property="testView2HConstraint" destination="Edy-dA-R0J" id="e4I-OV-6CR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-73" y="-58"/>
         </scene>
     </scenes>
 </document>
