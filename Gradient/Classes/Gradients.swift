@@ -26,7 +26,7 @@ public enum Gradients {
     case heavyRain
     case amyCrisp
     case meanFruit
-    case deepBlue /// dsad
+    case deepBlue
     case ripeMalinka
     case cloudyKnoxville
     case malibuBeach
@@ -37,7 +37,7 @@ public enum Gradients {
     case nearMoon
     case wildApple
     case saintPeterburg
-    case ariellesSmile  /// dsad
+    case ariellesSmile
     case plumPlate
     case everlastingSky
     case happyFisher

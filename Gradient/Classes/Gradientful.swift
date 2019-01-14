@@ -55,10 +55,16 @@ public final class Gradient<Base> : NSObject, CAAnimationDelegate {
     
     fileprivate var duration : TimeInterval = 3.0
     fileprivate let gradient = CAGradientLayer()
+    fileprivate var animation: Animation = .none {
+        didSet {
+            if animation == .none { setup(colors) }
+            else { setup(currentGradientColors()) }
+            animateGradient()
+        }
+    }
     
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         guard flag else { return }
-        gradient.colors = currentGradientColors().map { $0.cgColor }
         animateGradient()
     }
 }
@@ -72,18 +78,6 @@ fileprivate extension Gradient {
         return [colors[index], colors[nIndex]]
     }
     
-    func animateGradient() {
-        
-        currentGradient += 1
-        let animation = CABasicAnimation(keyPath: Animation.colors.keyPath)
-        animation.duration = duration
-        animation.toValue = currentGradientColors().map { $0.cgColor }
-        animation.fillMode = .forwards
-        animation.isRemovedOnCompletion = false
-        animation.delegate = self
-        gradient.add(animation, forKey: Animation.colors.key)
-    }
-    
     func setup(_ colors: [UIColor]) {
         gradient.removeAllAnimations()
         gradient.removeFromSuperlayer()
@@ -94,6 +88,45 @@ fileprivate extension Gradient {
         gradient.endPoint = endPosition.point
         gradient.drawsAsynchronously = true
         gradient.colors = colors.map { $0.cgColor }
+    }
+}
+
+/// animations of Gradient
+fileprivate extension Gradient {
+    
+    func animateGradient() {
+        
+        switch animation {
+        case .none:         gradient.removeAllAnimations()
+        case .colors:       animateColorsAnimation()
+        case .locations:    animateLocationsAnimation()
+        }
+    }
+
+    func animateColorsAnimation() {
+        
+        gradient.colors = currentGradientColors().map { $0.cgColor }
+        
+        currentGradient += 1
+        let anim = CABasicAnimation(keyPath: animation.keyPath)
+        anim.duration = duration
+        anim.toValue = currentGradientColors().map { $0.cgColor }
+        anim.fillMode = .forwards
+        anim.isRemovedOnCompletion = false
+        anim.delegate = self
+        gradient.add(anim, forKey: animation.key)
+    }
+    
+    func animateLocationsAnimation() {
+        
+        gradient.locations = [0.2, 0.4, 0.6]
+        // locations animation
+        let anim = CABasicAnimation(keyPath: animation.keyPath)
+        anim.duration = duration
+        anim.repeatCount = Float.infinity
+        anim.toValue = [0.6, 0.8, 1.0]
+        anim.autoreverses = true
+        gradient.add(anim, forKey: animation.key)
     }
 }
 
@@ -138,6 +171,8 @@ public extension Gradient {
 
 public enum Animation {
     
+    /// none animation
+    case none
     /// animation of CAGradientLayer.colors
     case colors
     /// animation of CAGradientLayer.locations
@@ -145,17 +180,19 @@ public enum Animation {
     
     internal var keyPath: String {
         switch self {
-//        case .bounds: return "bounds"
-//        case .position: return "position"
+            //        case .bounds: return "bounds"
+        //        case .position: return "position"
+        case .none: return ""
         case .colors: return "colors"
-        case .locations : return "locations"
+        case .locations: return "locations"
         }
     }
     
     internal var key: String {
         switch self {
-//        case .bounds: return "boundsChange"
-//        case .position: return "positionChange"
+            //        case .bounds: return "boundsChange"
+        //        case .position: return "positionChange"
+        case .none: return ""
         case .colors: return "colorsChange"
         case .locations : return "locationsChange"
         }
@@ -164,16 +201,9 @@ public enum Animation {
 
 public extension Gradient where Base : GradientCompatible {
     
-    public func config() {
-        setup(colors)
-        gradient.frame = base.bounds
+    public func apply(_ anim: Animation = .none) {
+        animation = anim
         base.insertSublayer(gradient)
-    }
-    
-    public func startAnimation() {
-        setup(currentGradientColors())
-        gradient.frame = base.bounds
-        base.insertSublayer(gradient)
-        animateGradient()
+        DispatchQueue.main.async { [unowned self] in self.gradient.frame = self.base.bounds }
     }
 }

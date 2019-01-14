@@ -38,7 +38,8 @@ class ViewController: UIViewController {
 //        view.addSubview(testView)
 //        testView.frame = CGRect(x: 0, y: 450, width: Double(self.view.bounds.width), height: (Double(arc4random() % 50) + 100.0))
 //        testView.backgroundColor = UIColor.purple
-        testView2.gradient.setPosition(end: .bottomLeft).setColors([UIColor.red, UIColor.blue, UIColor.green]).startAnimation()
+        testView2.gradient.setPosition(start: .left, end: .right).setColors([UIColor.red, UIColor.blue, UIColor.green, UIColor.yellow]).apply(.colors)
+//        testView2.gradient.setPosition(start: .left, end: .right).setColors([UIColor.red, UIColor.blue, UIColor.green, UIColor.yellow]).apply(.locations)
 
         gradientLabel.startPosition = .left
         gradientLabel.endPosition = .right
@@ -55,8 +56,8 @@ class ViewController: UIViewController {
                                          UIColor(red: 101.0/255.0, green: 73.0/255.0, blue: 242.0/255.0, alpha: 1.0)])
             gradientImageView.image = image
             gradientImageView.duration = 1.0
-            gradientImageView.startPosition = .bottom
-            gradientImageView.endPosition = .top
+//            gradientImageView.startPosition = .top
+//            gradientImageView.endPosition = .bottom
             gradientImageView.bounds = CGRect(x: 0, y: 0, width: 100.0, height: 100.0)
             gradientImageView.center = view.center
             gradientImageView.insets = UIOffset(horizontal: 30.0, vertical: 30.0)
@@ -68,14 +69,13 @@ class ViewController: UIViewController {
         setupProgress()
     }
     
-    
     func setupProgress() {
         
         let gradient = Gradients.layer(withColors: [UIColor.black, UIColor.white, UIColor.black])
         gradient.startPoint = Position.left.point
         gradient.endPoint = Position.right.point
         gradient.frame = CGRect(x: 0, y: 0, width: progressView.bounds.width, height: progressView.bounds.height)
-        gradient.locations = [-0.5, -0.5, 0.0]
+        gradient.locations = [-0.8, -0.2, 0.0]
         progressView.layer.insertSublayer(gradient, at: 0)
         
         let textLayer = CATextLayer.init()
@@ -98,7 +98,7 @@ class ViewController: UIViewController {
         let anim = CABasicAnimation(keyPath: "locations")
         anim.duration = 3.0
         anim.repeatCount = Float.infinity
-        anim.toValue = [1.0, 1.5, 1.5]
+        anim.toValue = [1.2, 1.8, 2.0]
         gradient.add(anim, forKey: nil)
     }
     
