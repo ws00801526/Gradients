@@ -5,7 +5,5 @@ target 'Gradient_Example' do
 
   target 'Gradient_Tests' do
     inherit! :search_paths
-
-    
   end
 end
