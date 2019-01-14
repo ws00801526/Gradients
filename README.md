@@ -1,6 +1,6 @@
 # Gradient
 
-[![CI Status](https://img.shields.io/travis/ws00801526/Gradient.svg?style=flat)](https://travis-ci.org/ws00801526/Gradient)
+[![Build Status](https://travis-ci.com/ws00801526/Gradients.svg?branch=master)](https://travis-ci.com/ws00801526/Gradients)
 [![Version](https://img.shields.io/cocoapods/v/Gradient.svg?style=flat)](https://cocoapods.org/pods/Gradient)
 [![License](https://img.shields.io/cocoapods/l/Gradient.svg?style=flat)](https://cocoapods.org/pods/Gradient)
 [![Platform](https://img.shields.io/cocoapods/p/Gradient.svg?style=flat)](https://cocoapods.org/pods/Gradient)
