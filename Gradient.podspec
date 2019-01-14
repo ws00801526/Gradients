@@ -9,22 +9,16 @@
 Pod::Spec.new do |s|
   s.name             = 'Gradient'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of Gradient.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
+  s.summary          = 'easy to set gradient for view'
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+                        easy to set gradient for view
+                        supports instagram login background animation
                        DESC
 
-  s.homepage         = 'https://github.com/ws00801526/Gradient'
+  s.homepage         = 'https://github.com/ws00801526/Gradients'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ws00801526' => '3057600441@qq.com' }
-  s.source           = { :git => 'https://github.com/ws00801526/Gradient.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/ws00801526/Gradients.git', :tag => s.version.to_s }
   s.swift_version = '4.2'
   s.ios.deployment_target = '8.0'
   s.source_files = 'Gradient/Classes/**/*'
